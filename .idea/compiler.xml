@@ -6,9 +6,10 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="leyouitemservice" />
-        <module name="leyou-gateWay" />
         <module name="leyouregistry" />
+        <module name="leyouupload" />
+        <module name="leyou-gateWay" />
+        <module name="leyouitemservice" />
         <module name="leyoucommon" />
       </profile>
     </annotationProcessing>
@@ -34,6 +35,7 @@
       <module name="leyouiteminterface" options="-parameters" />
       <module name="leyouitemservice" options="-parameters" />
       <module name="leyouregistry" options="-parameters" />
+      <module name="leyouupload" options="-parameters" />
     </option>
   </component>
 </project>

@@ -3,7 +3,6 @@ package com.leyou.service;
 import com.leyou.entity.PageList;
 import com.leyou.entity.TbBrand;
 import com.baomidou.mybatisplus.extension.service.IService;
-import org.springframework.http.ResponseEntity;
 
 /**
  * <p>

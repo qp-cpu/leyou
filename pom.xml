@@ -12,6 +12,7 @@
         <module>leyou-gateWay</module>
         <module>leyou-item-service</module>
         <module>leyou-common</module>
+        <module>leyou-upload</module>
     </modules>
 
     <name>leyou</name>

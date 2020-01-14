@@ -15,12 +15,4 @@
         id, name, image, letter
     </sql>
 
-    <select id="queryByPageandRows" parameterType="int" resultType="com.leyou.entity.TbBrand">
-        select * from tb_brand limit #{page},#{rows};
-    </select>
-
-    <select id="queryByPageandRowsandKey" parameterType="int" resultType="com.leyou.entity.TbBrand">
-        select * from tb_brand limit #{page},#{rows};
-    </select>
-
 </mapper>

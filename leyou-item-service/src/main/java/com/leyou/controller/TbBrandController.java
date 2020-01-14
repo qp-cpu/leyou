@@ -10,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 /**
  * <p>
@@ -38,11 +40,11 @@ public class TbBrandController {
 
     @GetMapping("/page")
     public ResponseEntity<PageList<TbBrand>> queryBrandsByPage(
-            @RequestParam(name = "key", required = false) String key,
-            @RequestParam(name = "page", defaultValue = "1") Integer page,
-            @RequestParam(name = "rows", defaultValue = "5") Integer rows,
-            @RequestParam(name = "sortBy", required = false) String sortBy,
-            @RequestParam(name = "desc", required = false) Boolean desc) {
+            @RequestParam(value = "key", required = false) String key,
+            @RequestParam(value = "page", defaultValue = "1") Integer page,
+            @RequestParam(value = "rows", defaultValue = "5") Integer rows,
+            @RequestParam(value = "sortBy", required = true) String sortBy,
+            @RequestParam(value = "desc", required = true) Boolean desc) {
          PageList<TbBrand> result = tbBrandService.queryBrandssByPage( key, page, rows, sortBy, desc );
         if (result == null || CollectionUtils.isEmpty( result.getItems() )) {
             return new ResponseEntity<>( HttpStatus.NOT_FOUND );
@@ -56,7 +58,7 @@ public class TbBrandController {
      * @return
      */
     @DeleteMapping("")
-    public ResponseEntity<TbBrand> deleteById(@RequestParam(name = "id",required = false) Long id)
+    public ResponseEntity<TbBrand> deleteById(@RequestParam(value = "id",required = false) Long id)
     {
         boolean b = tbBrandService.deleteById( id );
         if (b==true)
@@ -74,7 +76,7 @@ public class TbBrandController {
      * @return
      */
     @PostMapping("")
-    public ResponseEntity<TbBrand> addBrand(@RequestBody TbBrand tbBrand)
+    public ResponseEntity<Void> addBrand(@RequestBody TbBrand tbBrand)
     {
         if (tbBrand == null)
         {
@@ -90,6 +92,5 @@ public class TbBrandController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-
 
 }

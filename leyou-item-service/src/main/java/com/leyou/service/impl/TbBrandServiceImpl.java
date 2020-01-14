@@ -8,12 +8,11 @@ import com.leyou.entity.TbBrand;
 import com.leyou.dao.TbBrandMapper;
 import com.leyou.service.TbBrandService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.leyou.service.TbCategoryBrandService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
-
-
-import java.util.List;
 
 /**
  * <p>
@@ -28,6 +27,9 @@ public class TbBrandServiceImpl extends ServiceImpl<TbBrandMapper, TbBrand> impl
 
     @Autowired
     private TbBrandMapper tbBrandMapper;
+
+    @Autowired
+    private TbCategoryBrandService tbCategoryBrandService;
 
     /**
      * 根据查询条件分页查询品牌信息
@@ -44,7 +46,7 @@ public class TbBrandServiceImpl extends ServiceImpl<TbBrandMapper, TbBrand> impl
     public PageList<TbBrand> queryBrandssByPage(String key,Integer page,Integer rows,String sortBy,Boolean desc) {
 
 //        查询分页record ,没有key的情况
-        if(StringUtils.isEmpty( key )) {
+        if (StringUtils.isEmpty( key )) {
             IPage                 page1   = new Page( page,rows );
             QueryWrapper<TbBrand> wrapper = new QueryWrapper<>();
             if (desc == true) {
@@ -82,6 +84,7 @@ public class TbBrandServiceImpl extends ServiceImpl<TbBrandMapper, TbBrand> impl
 
     /**
      * 根据id删除分类管理分类商品
+     *
      * @param id
      * @return
      */
@@ -89,29 +92,30 @@ public class TbBrandServiceImpl extends ServiceImpl<TbBrandMapper, TbBrand> impl
     public boolean deleteById(Long id) {
 
         int i = baseMapper.deleteById( id );
-        if (i==1)
-        {
+        if (i == 1) {
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }
 
     /**
      * 新增商品
+     *
      * @param tbBrand
      * @return
      */
+    @Transactional
     @Override
     public boolean addBrand(TbBrand tbBrand) {
         int insert = baseMapper.insert( tbBrand );
-        if(insert>0)
-        {
-
+        if (insert > 0) {
+            for (Long cid:tbBrand.getCategories()) {
+//                添加商品，品牌中间表
+             tbCategoryBrandService.addCategoryBrand(cid,tbBrand.getId());
+            }
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }

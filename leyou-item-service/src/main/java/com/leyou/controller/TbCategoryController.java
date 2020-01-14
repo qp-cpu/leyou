@@ -78,7 +78,7 @@ public class TbCategoryController {
      * @return
      */
     @DeleteMapping("/delete")
-    public ResponseEntity<TbCategory> deleteByTbCategoryId(@RequestParam(name = "id",required = true) Long id)
+    public ResponseEntity<TbCategory> deleteByTbCategoryId(@RequestParam(value = "id",required = true) Long id)
     {
      boolean a = tbCategoryService.deleteByTbCategoryId(id);
      if (a == true)

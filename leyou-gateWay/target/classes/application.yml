@@ -13,4 +13,5 @@ zuul:
   prefix: /api
   routes:
     leyou-item-service: /item/**  #路由到商品的微服务
+    upload-service: /item/upload/**   #路由到上传微服务
 
