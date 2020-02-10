@@ -45,33 +45,20 @@ public class TbBrandServiceImpl extends ServiceImpl<TbBrandMapper, TbBrand> impl
     @Override
     public PageList<TbBrand> queryBrandssByPage(String key,Integer page,Integer rows,String sortBy,Boolean desc) {
 
-//        查询分页record ,没有key的情况
-        if (StringUtils.isEmpty( key )) {
-            IPage                 page1   = new Page( page,rows );
-            QueryWrapper<TbBrand> wrapper = new QueryWrapper<>();
-            if (desc == true) {
-                wrapper.orderByDesc( sortBy );
-            } else {
-                wrapper.orderByAsc( sortBy );
-            }
-            IPage             iPage    = baseMapper.selectPage( page1,wrapper );
-            PageList<TbBrand> pageList = new PageList<>();
-            pageList.setItemsLength( (int) iPage.getTotal() );
-            pageList.setItems( iPage.getRecords() );
-            pageList.setPageStart( page );
-            pageList.setPageStop( page + rows - 1 );
-            return pageList;
-        }
-        //        查询分页record ,有key的情况
-        else {
-            IPage                 page1   = new Page( page,rows );
-            QueryWrapper<TbBrand> wrapper = new QueryWrapper<>();
-            if (desc == true) {
-                wrapper.orderByDesc( sortBy );
-            } else {
-                wrapper.orderByAsc( sortBy );
-            }
+        IPage                 page1   = new Page( page,rows );
+        QueryWrapper<TbBrand> wrapper = new QueryWrapper<>();
+        if(!StringUtils.isEmpty( key ))
+        {
             wrapper.like( "name",key );
+        }
+        if(!StringUtils.isEmpty(sortBy)&& desc == false)
+        {
+            wrapper.orderByAsc( sortBy );
+        }
+        if(!StringUtils.isEmpty(sortBy)&& desc == true)
+        {
+            wrapper.orderByAsc( sortBy );
+        }
             IPage             iPage    = baseMapper.selectPage( page1,wrapper );
             PageList<TbBrand> pageList = new PageList<>();
             pageList.setItemsLength( (int) iPage.getTotal() );
@@ -79,8 +66,8 @@ public class TbBrandServiceImpl extends ServiceImpl<TbBrandMapper, TbBrand> impl
             pageList.setPageStart( page );
             pageList.setPageStop( page + rows - 1 );
             return pageList;
-        }
     }
+
 
     /**
      * 根据id删除分类管理分类商品

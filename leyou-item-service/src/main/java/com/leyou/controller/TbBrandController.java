@@ -43,8 +43,8 @@ public class TbBrandController {
             @RequestParam(value = "key", required = false) String key,
             @RequestParam(value = "page", defaultValue = "1") Integer page,
             @RequestParam(value = "rows", defaultValue = "5") Integer rows,
-            @RequestParam(value = "sortBy", required = true) String sortBy,
-            @RequestParam(value = "desc", required = true) Boolean desc) {
+            @RequestParam(value = "sortBy", required = false) String sortBy,
+            @RequestParam(value = "desc", required = false) Boolean desc) {
          PageList<TbBrand> result = tbBrandService.queryBrandssByPage( key, page, rows, sortBy, desc );
         if (result == null || CollectionUtils.isEmpty( result.getItems() )) {
             return new ResponseEntity<>( HttpStatus.NOT_FOUND );
