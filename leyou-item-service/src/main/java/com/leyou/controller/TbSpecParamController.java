@@ -35,13 +35,16 @@ public class TbSpecParamController {
      * @return
      */
     @GetMapping("params")
-    public ResponseEntity<List<TbSpecParam>> queryTbSpecParamByGid(@RequestParam(value = "gid",required = true) Long gid)
+    public ResponseEntity<List<TbSpecParam>> queryTbSpecParamByGid(@RequestParam(value = "gid",required = false) Long gid,
+                                                                   @RequestParam(value = "cid",required = false) Long cid,
+                                                                   @RequestParam(value = "generic",required = false) Boolean generic,
+                                                                   @RequestParam(value = "searching",required = false) Boolean searching)
     {
-            List<TbSpecParam> params =this.tbSpecParam.queryTbSpecParamByGid(gid);
-            if (CollectionUtils.isEmpty( params ))
-            {
+            List<TbSpecParam> params = this.tbSpecParam.queryTbSpecParamByGid( gid,cid,generic,searching );
+            if (CollectionUtils.isEmpty( params )) {
                 return ResponseEntity.notFound().build();
             }
+
             return ResponseEntity.ok( params );
     }
 

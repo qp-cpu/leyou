@@ -89,4 +89,19 @@ public class TbCategoryController {
          return new ResponseEntity<>( HttpStatus.NOT_FOUND );
      }
     }
+
+    /**
+     * 根据catogriesid 查询 name
+     * @param ids
+     * @return
+     */
+    @GetMapping("")
+    public ResponseEntity<List<String>> queryNameByIds(@RequestParam("ids")List<Long> ids){
+        List<String> list = this.tbCategoryService.queryTbCategoryByids( ids );
+        if(CollectionUtils.isEmpty( list ))
+        {
+            return new ResponseEntity<>( HttpStatus.NOT_FOUND );
+        }
+        return ResponseEntity.ok( list );
+    }
 }

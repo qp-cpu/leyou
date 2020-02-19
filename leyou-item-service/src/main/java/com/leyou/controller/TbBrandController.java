@@ -4,6 +4,7 @@ package com.leyou.controller;
 import com.leyou.entity.PageList;
 import com.leyou.entity.TbBrand;
 import com.leyou.service.TbBrandService;
+import com.leyou.service.TbCategoryBrandService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +28,9 @@ public class TbBrandController {
 
     @Autowired
     private TbBrandService tbBrandService;
+
+    @Autowired
+    private TbCategoryBrandService categoryBrandService;
 
     /**
      * 根据查询条件分页并排序查询品牌信息
@@ -93,4 +97,48 @@ public class TbBrandController {
         }
     }
 
+    /**
+     * 根据cids查询brandsid
+     * @param cid
+     * @return
+     */
+    @GetMapping("cid/{cid}")
+    public ResponseEntity<List<TbBrand>> qureyByCid(@PathVariable("cid")Long cid){
+//        根据cid查询品牌id
+//        Long  start = System.currentTimeMillis();
+//        List<Long> bids = this.categoryBrandService.qureyByCid(cid);
+//        if(CollectionUtils.isEmpty( bids ))
+//        {
+//            return new ResponseEntity<>( HttpStatus.NOT_FOUND );
+//        }
+//        List<TbBrand> tbBrands = this.tbBrandService.queryBrandBybids(bids);
+//        if(CollectionUtils.isEmpty( tbBrands ))
+//        {
+//            return new ResponseEntity<>( HttpStatus.NOT_FOUND );
+//        }
+//        Long end =System.currentTimeMillis();
+//        System.out.println(end-start);
+//        return ResponseEntity.ok( tbBrands ); //54
+          Long  start = System.currentTimeMillis();
+          List<TbBrand>  tbBrands = this.tbBrandService.queryBrandsBycid(cid);
+          Long end =System.currentTimeMillis();
+          System.out.println(end-start);
+          return ResponseEntity.ok( tbBrands );
+    }
+
+    /**
+     * 根据brandid查询brand
+     * @param id
+     * @return
+     */
+    @GetMapping("{id}")
+    public ResponseEntity<TbBrand> queryBrandById(@PathVariable("id") Long id)
+    {
+     TbBrand  brand = this.tbBrandService.queryBrandByid( id );
+     if(brand == null)
+     {
+         return new ResponseEntity<>( HttpStatus.NOT_FOUND );
+     }
+     return ResponseEntity.ok( brand );
+    }
 }

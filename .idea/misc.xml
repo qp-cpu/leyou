@@ -10,7 +10,9 @@
     <option name="ignoredFiles">
       <set>
         <option value="$PROJECT_DIR$/es6/pom.xml" />
+        <option value="$PROJECT_DIR$/leyou-common/pom.xml" />
         <option value="$PROJECT_DIR$/leyou-gateway/pom.xml" />
+        <option value="$PROJECT_DIR$/leyou-interface/pom.xml" />
         <option value="$PROJECT_DIR$/leyou-item-interface/pom.xml" />
         <option value="$PROJECT_DIR$/leyou-item/pom.xml" />
       </set>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.leyou.dao.TbSpuDetailMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.leyou.entity.TbSpuDetail">
+        <id column="spu_id" property="spuId" />
+        <result column="description" property="description" />
+        <result column="generic_spec" property="genericSpec" />
+        <result column="special_spec" property="specialSpec" />
+        <result column="packing_list" property="packingList" />
+        <result column="after_service" property="afterService" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        spu_id, description, generic_spec, special_spec, packing_list, after_service
+    </sql>
+
+</mapper>

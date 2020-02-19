@@ -14,6 +14,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
+import java.util.List;
+
 /**
  * <p>
  * 品牌表，一个品牌下有多个商品（spu），一对多关系 服务实现类
@@ -105,5 +107,49 @@ public class TbBrandServiceImpl extends ServiceImpl<TbBrandMapper, TbBrand> impl
         } else {
             return false;
         }
+    }
+
+    /**
+     * 根据id查询品牌信息
+     * @param brandId
+     * @return
+     */
+    @Override
+    public TbBrand selectByBid(Long brandId) {
+        TbBrand tbBrand = baseMapper.selectById( brandId );
+        return tbBrand;
+    }
+
+    /**
+     * 根据bids查询分类信息
+     * @param bids
+     * @return
+     */
+    @Override
+    public List<TbBrand> queryBrandBybids(List<Long> bids) {
+        List<TbBrand> tbBrands = this.baseMapper.selectBatchIds( bids );
+        return tbBrands;
+    }
+
+    /**
+     * 根据cid查询品牌信息
+     * @param cid
+     * @return
+     */
+    @Override
+    public List<TbBrand> queryBrandsBycid(Long cid) {
+        List<TbBrand> tbBrands = this.tbBrandMapper.queryBytbCatagroyids( cid );
+        return tbBrands;
+    }
+
+    /**
+     * 根据brandid 查询 brand
+     * @param id
+     * @return
+     */
+    @Override
+    public TbBrand queryBrandByid(Long id) {
+        TbBrand tbBrand = baseMapper.selectById( id );
+        return tbBrand;
     }
 }

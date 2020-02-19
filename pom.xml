@@ -11,13 +11,13 @@
         <module>leyou-registry</module>
         <module>leyou-gateWay</module>
         <module>leyou-item-service</module>
-        <module>leyou-common</module>
         <module>leyou-upload</module>
+        <module>leyou-search</module>
     </modules>
 
     <name>leyou</name>
     <description>LEYOU PROJECT FOR QIUPENG</description>
-    <packaging>pom</packaging>
+
 
     <parent>
         <groupId>org.springframework.boot</groupId>

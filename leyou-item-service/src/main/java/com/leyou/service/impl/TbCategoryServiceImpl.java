@@ -7,7 +7,9 @@ import com.leyou.service.TbCategoryService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * <p>
@@ -69,5 +71,30 @@ public class TbCategoryServiceImpl extends ServiceImpl<TbCategoryMapper, TbCateg
         else {
             return false;
         }
+    }
+
+    /**
+     * 根据cid分类名称
+     * @param list
+     * @return
+     */
+    @Override
+    public List<String> selectBycid(ArrayList<Long> list) {
+        List<TbCategory> categories = baseMapper.selectBatchIds( list );
+        List<String>     collect    = categories.stream().map( categorie -> categorie.getName() ).collect( Collectors.toList() );
+        return collect;
+    }
+
+    /**
+     * 通过id 获取name
+     * @param ids
+     */
+    @Override
+    public List<String> queryTbCategoryByids(List<Long> ids) {
+
+        List<TbCategory> categories = baseMapper.selectBatchIds( ids );
+        List<String>     collect    = categories.stream().map( categorie -> categorie.getName() ).collect( Collectors.toList() );
+
+        return  collect;
     }
 }

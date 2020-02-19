@@ -3,6 +3,8 @@ package com.leyou.service;
 import com.leyou.entity.TbCategoryBrand;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.List;
+
 /**
  * <p>
  * 商品分类和品牌的中间表，两者是多对多关系 服务类
@@ -14,4 +16,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
 public interface TbCategoryBrandService extends IService<TbCategoryBrand> {
 
     void addCategoryBrand(Long bid,Long cid);
+
+    List<Long> qureyByCid(Long cid);
 }

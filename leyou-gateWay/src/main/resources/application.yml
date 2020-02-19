@@ -13,5 +13,6 @@ zuul:
   prefix: /api
   routes:
     leyou-item-service: /item/**  #路由到商品的微服务
+    leyou-search: /search/**   #路由到搜索的微服务
 
 

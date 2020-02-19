@@ -6,16 +6,19 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="leyouregistry" />
-        <module name="leyouupload" />
         <module name="leyou-gateWay" />
         <module name="leyouitemservice" />
-        <module name="leyoucommon" />
+        <module name="leyou" />
+        <module name="leyou-search" />
+        <module name="leyouregistry" />
+        <module name="leyouupload" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="es6" target="1.8" />
       <module name="leyou-gateway" target="1.8" />
+      <module name="leyou-interface" target="1.8" />
+      <module name="leyoucommon" target="1.8" />
       <module name="leyougateway" target="1.8" />
       <module name="leyougateWay" target="1.8" />
       <module name="leyouitem" target="1.8" />
@@ -28,6 +31,8 @@
       <module name="leyou" options="-parameters" />
       <module name="leyou-gateWay" options="-parameters" />
       <module name="leyou-gateway" options="-parameters" />
+      <module name="leyou-interface" options="-parameters" />
+      <module name="leyou-search" options="-parameters" />
       <module name="leyoucommon" options="-parameters" />
       <module name="leyougateWay" options="-parameters" />
       <module name="leyougateway" options="-parameters" />

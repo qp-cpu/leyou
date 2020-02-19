@@ -3,6 +3,7 @@ package com.leyou.service;
 import com.leyou.entity.TbCategory;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,4 +22,8 @@ public interface TbCategoryService extends IService<TbCategory> {
     boolean addCategory(TbCategory tbCategory);
 
     boolean deleteByTbCategoryId(Long id);
+
+    List<String> selectBycid(ArrayList<Long> list);
+
+    List<String> queryTbCategoryByids(List<Long> ids);
 }

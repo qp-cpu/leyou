@@ -5,7 +5,6 @@ import com.leyou.entity.TbSpecParam;
 import com.leyou.dao.TbSpecParamMapper;
 import com.leyou.service.TbSpecParamService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,16 +23,32 @@ public class TbSpecParamServiceImpl extends ServiceImpl<TbSpecParamMapper, TbSpe
     /**
      *
      *根据group_id查询规格参数
+     *
+     * @param cid
      * @param gid
+     * @param generic
+     * @param searching
      * @return
      */
     @Override
-    public List<TbSpecParam> queryTbSpecParamByGid(Long gid) {
+    public List<TbSpecParam> queryTbSpecParamByGid(Long gid,Long cid,Boolean generic,Boolean searching) {
         QueryWrapper wrapper = new QueryWrapper();
-        wrapper.eq("group_id",gid);
+        if(gid != null) {
+            wrapper.eq( "group_id",gid );
+        }
+        if(cid != null) {
+            wrapper.eq( "cid",cid );
+        }
+        if(generic != null) {
+            wrapper.eq( "generic",generic );
+        }
+        if(searching != null) {
+            wrapper.eq( "searching",searching );
+        }
         List list = baseMapper.selectList( wrapper );
         return list;
     }
+
 
     /**
      * 删除参数

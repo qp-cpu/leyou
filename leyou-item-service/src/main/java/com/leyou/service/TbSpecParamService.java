@@ -2,7 +2,6 @@ package com.leyou.service;
 
 import com.leyou.entity.TbSpecParam;
 import com.baomidou.mybatisplus.extension.service.IService;
-import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
@@ -16,7 +15,7 @@ import java.util.List;
  */
 public interface TbSpecParamService extends IService<TbSpecParam> {
 
-    List<TbSpecParam> queryTbSpecParamByGid(Long gid);
+    List<TbSpecParam> queryTbSpecParamByGid(Long gid,Long cid,Boolean generic,Boolean searching);
 
     int deleteTbSpecgroup(Long id);
 
