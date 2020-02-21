@@ -2,6 +2,7 @@ package com.leyou.dao;
 
 import com.leyou.entity.TbBrand;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
@@ -15,6 +16,7 @@ import java.util.List;
  * @author qp
  * @since 2020-01-10
  */
+@Mapper
 public interface TbBrandMapper extends BaseMapper<TbBrand> {
 
     List<TbBrand> queryByPageandRows(@Param( "page" ) Integer page,@Param( "rows" ) Integer rows);

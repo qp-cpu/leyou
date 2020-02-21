@@ -14,5 +14,20 @@ zuul:
   routes:
     leyou-item-service: /item/**  #路由到商品的微服务
     leyou-search: /search/**   #路由到搜索的微服务
+  host:
+    connect-timeout-millis: 3000
+    socket-timeout-millis: 3000
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeout-in-milliseconds: 3000
+
+ribbon:
+  ReadTimeout: 3000
+  ConnectTimeout: 3000
 
 

@@ -9,6 +9,7 @@ import lombok.experimental.Accessors;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * <p>
@@ -74,12 +75,12 @@ public class TbSku implements Serializable {
     /**
      * 添加时间
      */
-    private LocalDateTime createTime;
+    private Date    createTime;
 
     /**
      * 最后修改时间
      */
-    private LocalDateTime lastUpdateTime;
+    private Date lastUpdateTime;
 
 
 }

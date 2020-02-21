@@ -2,6 +2,7 @@ package com.leyou.dao;
 
 import com.leyou.entity.TbStock;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Mapper;
 
 /**
  * <p>
@@ -11,6 +12,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @author qp
  * @since 2020-02-11
  */
+@Mapper
 public interface TbStockMapper extends BaseMapper<TbStock> {
 
 }

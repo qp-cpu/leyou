@@ -10,6 +10,8 @@ spring:
       cluster-name: elasticsearch
       cluster-nodes: 121.41.85.42:9300
   jackson:
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: false
     default-property-inclusion: non_null
 
 eureka:

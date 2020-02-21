@@ -3,6 +3,7 @@ package com.leyou.controller;
 import com.leyou.pojo.Goods;
 import com.leyou.pojo.PageList;
 import com.leyou.pojo.SearchRequest;
+import com.leyou.pojo.SearchResult;
 import com.leyou.serice.SearchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -22,9 +23,9 @@ public class SearchController {
      * @return
      */
     @PostMapping("page")
-    public ResponseEntity<PageList<Goods>> search(@RequestBody SearchRequest request)
+    public ResponseEntity<SearchResult<Goods>> search(@RequestBody SearchRequest request)
     {
-        PageList<Goods> pageList = this.searchService.search(request);
+        SearchResult<Goods> pageList = this.searchService.search(request);
         if (pageList == null || CollectionUtils.isEmpty( pageList.getItems() ))
         {
             return ResponseEntity.notFound().build();

@@ -12,6 +12,7 @@ import org.apache.ibatis.annotations.Mapper;
  * @author qp
  * @since 2020-01-09
  */
+@Mapper
 public interface TbCategoryMapper extends BaseMapper<TbCategory> {
 
 }

@@ -102,8 +102,7 @@ public class TbSpuServiceImpl extends ServiceImpl<TbSpuMapper, TbSpu> implements
         spuDto.setId( null );
         spuDto.setSaleable( true );
         spuDto.setValid( true );
-        LocalDateTime localDateTime = LocalDateTime.ofInstant( new Date().toInstant(),ZoneId.systemDefault() );
-        spuDto.setCreateTime(localDateTime);
+        spuDto.setCreateTime(new Date(  ));
         spuDto.setLastUpdateTime( spuDto.getCreateTime() );
         this.baseMapper.insert( spuDto );
 //   增加spudetail
@@ -123,8 +122,7 @@ public class TbSpuServiceImpl extends ServiceImpl<TbSpuMapper, TbSpu> implements
  //        新增sku
             sku.setId( null );
             sku.setSpuId( spuDto.getId() );
-            LocalDateTime start = LocalDateTime.ofInstant( new Date().toInstant(),ZoneId.systemDefault() );
-            sku.setCreateTime( start );
+            sku.setCreateTime( new Date(  ) );
             sku.setLastUpdateTime( sku.getCreateTime() );
             this.tbSkuService.addsku(sku);
  //           新增库存
@@ -154,8 +152,7 @@ public class TbSpuServiceImpl extends ServiceImpl<TbSpuMapper, TbSpu> implements
         TbSpu tbSpu = new TbSpu();
         BeanUtils.copyProperties( spuDto,tbSpu );
         tbSpu.setCreateTime( null );
-        LocalDateTime start = LocalDateTime.ofInstant( new Date().toInstant(),ZoneId.systemDefault() );
-        tbSpu.setLastUpdateTime( start );
+        tbSpu.setLastUpdateTime( new Date(  ) );
         tbSpu.setValid( null );
         tbSpu.setSaleable( null );
         baseMapper.updateById(  tbSpu);

@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.time.LocalDateTime;
 import java.io.Serializable;
+import java.util.Date;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -72,12 +74,12 @@ public class TbSpu implements Serializable {
     /**
      * 添加时间
      */
-    private LocalDateTime createTime;
+    private Date createTime;
 
     /**
      * 最后修改时间
      */
-    private LocalDateTime lastUpdateTime;
+    private Date lastUpdateTime;
 
 
 }
