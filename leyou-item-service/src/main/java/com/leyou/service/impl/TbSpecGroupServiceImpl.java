@@ -3,8 +3,11 @@ package com.leyou.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.leyou.entity.TbSpecGroup;
 import com.leyou.dao.TbSpecGroupMapper;
+import com.leyou.entity.TbSpecParam;
 import com.leyou.service.TbSpecGroupService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.leyou.service.TbSpecParamService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Wrapper;
@@ -21,6 +24,8 @@ import java.util.List;
 @Service
 public class TbSpecGroupServiceImpl extends ServiceImpl<TbSpecGroupMapper, TbSpecGroup> implements TbSpecGroupService {
 
+    @Autowired
+    private TbSpecParamService paramService;
     /**
      * 根据cid查询参数组
      * @param cid
@@ -66,5 +71,20 @@ public class TbSpecGroupServiceImpl extends ServiceImpl<TbSpecGroupMapper, TbSpe
     public int deleteTbSpecgroup(Long id) {
         int i = baseMapper.deleteById( id );
         return i;
+    }
+
+    /**
+     *根据cid 查询分类组信息
+     * @param cid
+     * @return
+     */
+    @Override
+    public List<TbSpecGroup> queryGroupsWithParam(Long cid) {
+        List<TbSpecGroup> groups = this.queryGroupByCid( cid );
+        groups.forEach( group ->{
+            List<TbSpecParam> params = this.paramService.queryTbSpecParamByGid( group.getId(),null,null,null );
+            group.setParams( params );
+        } );
+        return  groups;
     }
 }

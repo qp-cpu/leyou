@@ -22,4 +22,6 @@ public interface TbSpecGroupService extends IService<TbSpecGroup> {
     int updateTbSpecgroup(TbSpecGroup tbSpecGroup);
 
     int deleteTbSpecgroup(Long id);
+
+    List<TbSpecGroup> queryGroupsWithParam(Long cid);
 }

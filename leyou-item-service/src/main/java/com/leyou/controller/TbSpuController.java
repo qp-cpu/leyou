@@ -3,6 +3,8 @@ package com.leyou.controller;
 
 import com.leyou.dto.SpuDto;
 import com.leyou.entity.PageList;
+import com.leyou.entity.TbSpecParam;
+import com.leyou.entity.TbSpu;
 import com.leyou.service.TbSpuService;
 import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.stereotype.Controller;
@@ -49,6 +52,24 @@ public class TbSpuController {
             return new ResponseEntity<>( HttpStatus.NOT_FOUND );
         }
         return ResponseEntity.ok( spuDtos );
+    }
+
+    /**
+     *
+     * 根据spu id查询 spu
+     * @param id
+     * @return
+     */
+    @GetMapping("{id}")
+    public ResponseEntity<TbSpu> querySpuByid(@PathVariable("id") Long id)
+    {
+        TbSpu spu = this.spuService.querySpuByid(id);
+        if(spu == null)
+        {
+            return ResponseEntity.notFound().build();
+        }
+
+        return  ResponseEntity.ok( spu );
     }
 
 }

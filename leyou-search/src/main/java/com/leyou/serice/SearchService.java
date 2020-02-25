@@ -11,10 +11,7 @@ import com.leyou.pojo.*;
 import com.leyou.repostory.GoodsRepository;
 import com.sun.deploy.util.StringUtils;
 import org.apache.commons.lang.math.NumberUtils;
-import org.elasticsearch.index.query.MatchQueryBuilder;
-import org.elasticsearch.index.query.Operator;
-import org.elasticsearch.index.query.QueryBuilder;
-import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.index.query.*;
 import org.elasticsearch.search.aggregations.Aggregation;
 import org.elasticsearch.search.aggregations.AggregationBuilder;
 import org.elasticsearch.search.aggregations.AggregationBuilders;
@@ -157,7 +154,8 @@ public class SearchService {
 //        自定义查询构造器
         NativeSearchQueryBuilder builder = new NativeSearchQueryBuilder();
 //        添加查询条件
-         QueryBuilder baseicQuery = QueryBuilders.matchQuery( "all",request.getKey() ).operator( Operator.AND );
+//         QueryBuilder baseicQuery = QueryBuilders.matchQuery( "all",request.getKey() ).operator( Operator.AND );
+        BoolQueryBuilder baseicQuery = buildBoolQueryBuilder(request);
         if(!org.apache.commons.lang3.StringUtils.isBlank( request.getKey() ))
         {
             builder.withQuery( baseicQuery );
@@ -191,6 +189,35 @@ public class SearchService {
         }
 
          return new SearchResult<Goods>(goodsPage.getTotalElements(),goodsPage.getTotalPages(),goodsPage.getContent(),categories,brands,specs);
+    }
+
+    /**
+     * 构建boolean查询
+     * @param request
+     * @return
+     */
+    private BoolQueryBuilder buildBoolQueryBuilder(SearchRequest request) {
+        BoolQueryBuilder builder = QueryBuilders.boolQuery();
+       //给Boolean查询添加基本查询条件
+        builder.must( QueryBuilders.matchQuery( "all",request.getKey() ).operator( Operator.AND ) );
+//        添加过滤条件
+        Map<String, Object> filter = request.getFilter();
+        for (Map.Entry<String, Object> entry : filter.entrySet()) {
+            String key = entry.getKey();
+            if(org.apache.commons.lang.StringUtils.equals( "品牌",key ))
+            {
+                key = "brandId";
+            }else if(org.apache.commons.lang.StringUtils.equals( "分类",key )){
+                key = "cid3";
+            }
+            else {
+                key = "specs." + key + ".keyword";
+            }
+            builder.filter( QueryBuilders.termQuery( key , entry.getValue()) );
+        }
+
+
+        return builder;
     }
 
     /**

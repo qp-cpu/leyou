@@ -25,4 +25,6 @@ public interface TbSpuService extends IService<TbSpu> {
 
 
     Integer updateGoods(SpuDto spuDto);
+
+    TbSpu querySpuByid(Long id);
 }

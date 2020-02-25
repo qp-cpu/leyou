@@ -13,6 +13,8 @@ public class SearchResult<G> extends PageList<Goods> {
 
     private List<Map<String,Object>> specs;
 
+
+
     public List<Map<String, Object>> getSpecs() {
         return specs;
     }

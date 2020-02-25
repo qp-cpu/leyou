@@ -90,4 +90,21 @@ public class TbSpecGroupController {
        }
        return ResponseEntity.ok().build();
     }
+
+    /**
+     *根据cid 查询分类组信息
+     * @param cid
+     * @return
+     */
+    @GetMapping("group/param/{cid}")
+    public ResponseEntity<List<TbSpecGroup>> queryGroupsWithParam(@PathVariable("cid")Long cid)
+    {
+        List<TbSpecGroup>  groups = this.specGroupService.queryGroupsWithParam(cid);
+        if(CollectionUtils.isEmpty( groups ))
+        {
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok( groups );
+    }
 }

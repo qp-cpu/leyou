@@ -163,5 +163,17 @@ public class TbSpuServiceImpl extends ServiceImpl<TbSpuMapper, TbSpu> implements
         return 1;
         }
 
+    /**
+     *
+     * 根据spu id查询 spu
+     * @param id
+     * @return
+     */
+    @Override
+    public TbSpu querySpuByid(Long id) {
+        TbSpu tbSpu = baseMapper.selectById( id );
+        return tbSpu;
+    }
+
 
 }
