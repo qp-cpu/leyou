@@ -1,10 +1,7 @@
 package com.leyou.client;
 
 
-import com.leyou.pojo.PageList;
-import com.leyou.pojo.SpuDto;
-import com.leyou.pojo.TbSku;
-import com.leyou.pojo.TbSpuDetail;
+import com.leyou.pojo.*;
 import org.springframework.cloud.openfeign.FeignClient;
 
 import org.springframework.http.ResponseEntity;
@@ -47,5 +44,15 @@ public interface GoodsClient {
      */
     @GetMapping("sku/list")
     public List<TbSku> QuerySkuBySpuId(@RequestParam(value = "id",required = true)Long id);
+
+
+    /**
+     *
+     * 根据spu id查询 spu
+     * @param id
+     * @return
+     */
+    @GetMapping("spu/{id}")
+    public TbSpu querySpuByid(@PathVariable("id") Long id);
 
 }

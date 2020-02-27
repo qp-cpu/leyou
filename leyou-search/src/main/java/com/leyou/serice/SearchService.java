@@ -50,7 +50,7 @@ public class SearchService {
 
     private static final ObjectMapper MAPPER =   new ObjectMapper(  );
 
-    public Goods buildGoods(SpuDto spu) throws IOException {
+    public Goods buildGoods(TbSpu spu) throws IOException {
         Goods goods = new Goods();
         //根据分类的id查询分类的名称
         List<String> names = this.categoryClient.queryNameByIds( Arrays.asList( spu.getCid1(),spu.getCid2(),spu.getCid3() ) );
@@ -296,5 +296,14 @@ public class SearchService {
             map.put( "name",list.get( 0 ) );
             return map;
         } ).collect( Collectors.toList() );
+    }
+
+    /*8
+    rabbitmq save
+     */
+    public void save(Long id) throws IOException {
+        TbSpu spu = this.goodsClient.querySpuByid( id );
+        Goods goods = this.buildGoods(  spu );
+        this.goodsRepository.save( goods );
     }
 }

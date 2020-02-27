@@ -8,6 +8,8 @@ import com.leyou.entity.*;
 import com.leyou.dao.TbSpuMapper;
 import com.leyou.service.*;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.amqp.AmqpException;
+import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,6 +44,8 @@ public class TbSpuServiceImpl extends ServiceImpl<TbSpuMapper, TbSpu> implements
       private TbStockService stockService;
       @Autowired
       private TbSkuService tbSkuService;
+      @Autowired
+      private AmqpTemplate amqpTemplate;
     /**
      * 根据条件分页查询spu集
      * @param key
@@ -110,7 +114,21 @@ public class TbSpuServiceImpl extends ServiceImpl<TbSpuMapper, TbSpu> implements
         spuDetail.setSpuId( spuDto.getId() );
         this.spuDetailService.addSpudetail( spuDetail );
         saveSkuandStock( spuDto );
+        sendMsg( "insert" ,spuDto.getId());
 
+    }
+
+    /**
+     * 封装m发送qp方法
+     * @param type
+     * @param id
+     */
+    private void sendMsg(String type,Long id) {
+        try {
+            this.amqpTemplate.convertAndSend( "item."+type ,id);
+        } catch (AmqpException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -160,7 +178,9 @@ public class TbSpuServiceImpl extends ServiceImpl<TbSpuMapper, TbSpu> implements
         TbSpuDetail spuDetail = spuDto.getSpuDetail();
         spuDetail.setSpuId( spuDto.getId() );
         this.spuDetailService.updateById( spuDetail );
+        sendMsg( "update",spuDto.getId() );
         return 1;
+
         }
 
     /**
