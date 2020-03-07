@@ -23,4 +23,6 @@ public interface TbSkuService extends IService<TbSku> {
     List<Long> qureySkuidBySpuid(Long id);
 
     void deleteBySkuids(List<Long> skuids);
+
+    TbSku queryById(Long skuid);
 }

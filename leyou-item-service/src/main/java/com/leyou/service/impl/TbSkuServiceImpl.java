@@ -57,4 +57,15 @@ public class TbSkuServiceImpl extends ServiceImpl<TbSkuMapper, TbSku> implements
     public void deleteBySkuids(List<Long> skuids) {
         baseMapper.deleteBatchIds( skuids );
     }
+
+    /**
+     * 根据skuid 查询 sku
+     * @param skuid
+     * @return
+     */
+    @Override
+    public TbSku queryById(Long skuid) {
+
+        return  this.baseMapper.selectById( skuid );
+    }
 }

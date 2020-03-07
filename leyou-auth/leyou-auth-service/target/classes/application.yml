@@ -1,0 +1,21 @@
+server:
+  port: 8087
+spring:
+  application:
+    name: auth-server
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:10086/eureka
+    registry-fetch-interval-seconds: 10
+  instance:
+    lease-expiration-duration-in-seconds: 15
+    lease-renewal-interval-in-seconds: 5
+
+leyou:
+  jwt:
+    secret: leyou@Login(Auth}*^31)&heiMa% # 登录校验的密钥
+    pubKeyPath: E:\springcloud\leyou\rsa\rsarsa.pub # 公钥地址
+    priKeyPath: E:\springcloud\leyou\rsa\rsa.pri # 私钥地址
+    expire: 30 # 过期时间,单位分钟
+    cookieName: LY_TOKEN

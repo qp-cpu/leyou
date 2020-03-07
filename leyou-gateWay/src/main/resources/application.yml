@@ -14,9 +14,15 @@ zuul:
   routes:
     leyou-item-service: /item/**  #路由到商品的微服务
     leyou-search: /search/**   #路由到搜索的微服务
+    user-service: /user/**    #路由到用户微服务
+    auth-server: /auth/**   #路由到用户验证微服务
+    cart-service: /cart/**   #路由到购物车微服务
+    order-service: /order/**  #路由到订单微服务
   host:
     connect-timeout-millis: 3000
     socket-timeout-millis: 3000
+  add-host-header: true #添加地址头信息
+  sensitive-headers: #设置默认覆盖头信息
 
 hystrix:
   command:
@@ -24,10 +30,24 @@ hystrix:
       execution:
         isolation:
           thread:
-            timeout-in-milliseconds: 3000
+            timeout-in-milliseconds: 120000
 
 ribbon:
-  ReadTimeout: 3000
-  ConnectTimeout: 3000
+  ReadTimeout: 10000
+  ConnectTimeout: 10000
+  eureka:
+    enabled: true
 
 
+leyou:
+  jwt:
+    pubKeyPath: E:\springcloud\leyou\rsa\rsarsa.pub # 公钥地址
+    cookieName: LY_TOKEN
+  filter:
+    allowPaths:
+      - /api/auth
+      - /api/search
+      - /api/user/register
+      - /api/user/check
+      - /api/user/code
+      - /api/item

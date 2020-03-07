@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.stereotype.Controller;
@@ -43,6 +44,22 @@ public class TbSkuController {
             return new ResponseEntity<>( HttpStatus.NOT_FOUND );
         }
         return ResponseEntity.ok( skus );
+    }
+
+    /**
+     * 更具skuid 查询 sku
+     * @param
+     * @return
+     */
+    @GetMapping("{sid}")
+    public ResponseEntity<TbSku> queryById(@PathVariable("sid") Long sid)
+    {
+       TbSku sku =  this.tbSkuService.queryById(sid);
+       if (sku == null)
+       {
+           return ResponseEntity.badRequest().build();
+       }
+       return ResponseEntity.ok( sku );
     }
 
 }

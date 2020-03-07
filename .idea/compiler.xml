@@ -6,12 +6,18 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="leyou-search" />
+        <module name="leyouupload" />
+        <module name="leyou-user" />
+        <module name="leyou-order" />
+        <module name="leyoucart" />
         <module name="leyou-gateWay" />
         <module name="leyouitemservice" />
         <module name="leyou-goods-web" />
-        <module name="leyou-search" />
+        <module name="leyou-sms" />
+        <module name="leyou-auth-service" />
         <module name="leyouregistry" />
-        <module name="leyouupload" />
+        <module name="leyou-auth-common" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -29,11 +35,18 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="es6" options="-parameters" />
       <module name="leyou" options="-parameters" />
+      <module name="leyou-auth" options="-parameters" />
+      <module name="leyou-auth-common" options="-parameters" />
+      <module name="leyou-auth-service" options="-parameters" />
       <module name="leyou-gateWay" options="-parameters" />
       <module name="leyou-gateway" options="-parameters" />
       <module name="leyou-goods-web" options="-parameters" />
       <module name="leyou-interface" options="-parameters" />
+      <module name="leyou-order" options="-parameters" />
       <module name="leyou-search" options="-parameters" />
+      <module name="leyou-sms" options="-parameters" />
+      <module name="leyou-user" options="-parameters" />
+      <module name="leyoucart" options="-parameters" />
       <module name="leyoucommon" options="-parameters" />
       <module name="leyougateWay" options="-parameters" />
       <module name="leyougateway" options="-parameters" />
