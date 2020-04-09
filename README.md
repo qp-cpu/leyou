@@ -1,14 +1,24 @@
 # 乐优商城项目
 
 ##具体描述
-前端：HTML Css JavaScript thymeleaf Vue
+
 ---
-后端：springboot mybatis-plus springcloud maven git fastdfs
+
+##前端：HTML Css JavaScript thymeleaf Vue
+
 ---
-中间件：Redis rabbitMq elasticsearch Nginx
---
-数据库： mysql
---
+
+##后端：springboot mybatis-plus springcloud maven git fastdfs
+
+---
+
+##中间件：Redis rabbitMq elasticsearch Nginx
+
+---
+
+##数据库： mysql
+
+---
 项目简介：此项目是仿乐优商城项目，且前后端分离分三部分，前端页面，后台管理页面，后端服务器，用户通过浏览器发送请求，被本地HOST配置的域名映射解析成具体IP地址，然后Nginx监听80端口，反向代理到具体的微服务，且gateway网关微服务作为微服务的入口，对不同的请求进行转发过滤。本项目分用户模块，订单模块，商品模块，搜索模块，短信模块，文件上传模块等模块，实现了用户无状态登录，注册，商品的增删改查，商品搜索，商品下单，商品也持久化，添加购物车，发送
 短信，微信支付等功能。
 ---
