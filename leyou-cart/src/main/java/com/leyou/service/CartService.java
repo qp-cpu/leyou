@@ -36,6 +36,7 @@ public class CartService {
 //        查询用户记录
         BoundHashOperations<String, Object, Object> hashOperations = this.redisTemplate.boundHashOps( KEY_PREFIX + userInfo.getId() );
 
+
         String key = cart.getSkuId().toString();
         Integer num = cart.getNum();
 //        判断商品是否在购物车中
