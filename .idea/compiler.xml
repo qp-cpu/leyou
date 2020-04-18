@@ -6,18 +6,18 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="leyou-auth-service" />
-        <module name="leyou-user" />
-        <module name="leyou-order" />
-        <module name="leyou-auth-common" />
-        <module name="leyoucart" />
+        <module name="leyou-search" />
+        <module name="leyouupload" />
         <module name="leyou-gateWay" />
+        <module name="leyou-order" />
+        <module name="leyoucart" />
+        <module name="leyou-user" />
         <module name="leyouitemservice" />
         <module name="leyou-goods-web" />
         <module name="leyou-sms" />
-        <module name="leyou-search" />
+        <module name="leyou-auth-service" />
         <module name="leyouregistry" />
-        <module name="leyouupload" />
+        <module name="leyou-auth-common" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
